@@ -1,0 +1,108 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  COMMERCIAL
+}
+enum ProspectStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  NEGOTIATION
+  WON
+  LOST
+}
+
+enum ProspectSource {
+  WEBSITE
+  FACEBOOK
+  LINKEDIN
+  REFERRAL
+  OTHER
+}
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+}
+enum BusinessRole {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
+model User {
+  id        String     @id @default(uuid())
+  name      String
+  email     String     @unique
+  password  String
+  role      Role       @default(COMMERCIAL)
+  status    UserStatus @default(ACTIVE)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  businesses BusinessMember[]
+}
+model Business {
+  id          String   @id @default(uuid())
+   name              String
+  matriculeFiscale  String   @unique
+  description       String?
+
+  // Business classification
+  region            String
+  serviceDomain     String
+
+  // Contact information
+  phone             String?
+  email             String?
+  address           String?
+  website           String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  members BusinessMember[]
+  prospects Prospect[]
+}
+
+model BusinessMember {
+  id         String       @id @default(uuid())
+  userId     String
+  businessId String
+  role       BusinessRole @default(MEMBER)
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, businessId])
+}
+model Prospect {
+  id             String         @id @default(uuid())
+  firstName      String
+  lastName       String
+  company        String
+  email          String?
+  phone          String?
+  jobTitle       String?
+  industry       String?
+  region         String?
+  website        String?
+  source         ProspectSource @default(OTHER)
+  status         ProspectStatus @default(NEW)
+  estimatedValue Float?
+  notes          String?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  businessId String
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@index([businessId])
+}
