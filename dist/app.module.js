@@ -12,12 +12,15 @@ const auth_module_1 = require("./auth/auth.module");
 const users_module_1 = require("./users/users.module");
 const businesses_module_1 = require("./businesses/businesses.module");
 const prospects_module_1 = require("./prospects/prospects.module");
+const interactions_module_1 = require("./interactions/interactions.module");
+const ai_module_1 = require("./ai/ai.module");
+const leads_module_1 = require("./leads/leads.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [auth_module_1.AuthModule, users_module_1.UsersModule, businesses_module_1.BusinessModule, prospects_module_1.ProspectsModule],
+        imports: [auth_module_1.AuthModule, users_module_1.UsersModule, businesses_module_1.BusinessModule, prospects_module_1.ProspectsModule, leads_module_1.LeadsModule, interactions_module_1.InteractionsModule, ai_module_1.AiModule],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

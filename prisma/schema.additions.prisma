@@ -1,0 +1,63 @@
+// ── Append to prisma/schema.prisma, then: npx prisma migrate dev --name leads_interactions_ai ──
+//
+// 1) In your existing `model User`, add (if not already there):
+//      status    String   @default("ACTIVE")
+//      leads     Lead[]
+//    NOTE: Lead.ownerId below is `String` (cuid). If your User.id is an Int, change ownerId to Int.
+
+enum LeadStatus {
+  NOUVEAU
+  CONTACTE
+  EN_NEGOCIATION
+  PROPOSITION_ENVOYEE
+  GAGNE
+  PERDU
+}
+
+enum InteractionType {
+  EMAIL
+  REUNION
+  NOTE
+}
+
+model Lead {
+  id              String       @id @default(cuid())
+  contactName     String
+  companyName     String
+  email           String
+  phone           String?
+  sector          String?
+  source          String?
+  estimatedBudget Float?
+  status          LeadStatus   @default(NOUVEAU)
+
+  // AI results (Module 4)
+  score          Int?
+  aiScoreDetails Json?
+  aiAnalysis     Json?
+  aiSummary      Json?
+  aiActions      Json?
+  aiUpdatedAt    DateTime?
+
+  ownerId      String
+  owner        User          @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  interactions Interaction[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([ownerId])
+  @@index([status])
+}
+
+model Interaction {
+  id          String          @id @default(cuid())
+  date        DateTime        @default(now())
+  type        InteractionType
+  description String
+  leadId      String
+  lead        Lead            @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  createdAt   DateTime        @default(now())
+
+  @@index([leadId])
+}

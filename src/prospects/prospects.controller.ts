@@ -1,30 +1,111 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Request, UseGuards } from '@nestjs/common';
+
+import {
+    Body,
+    Controller,
+    Delete,
+    Get,
+    Param,
+    ParseUUIDPipe,
+    Patch,
+    Post,
+    Query,
+    Req,
+    UseGuards,
+} from '@nestjs/common';
+
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { ProspectsService } from './prospects.service';
-import { CreateProspectDto } from './create-prospect.dto';
+import { CreateProspectDto } from './prospects.dto';
+import { UpdateProspectDto } from './prospects.dto';
+import { ListProspectsDto } from './prospects.dto';
 
-
+@Controller('businesses/:businessId/prospects')
 @UseGuards(JwtAuthGuard)
-@Controller('prospects')
 export class ProspectsController {
-    constructor(private prospectService: ProspectsService) { }
+    constructor(
+        private readonly prospectService: ProspectsService,
+    ) { }
 
-    @Post('business/:businessId')
-    create(@Request() req, @Param('businessId') businessId: string, @Body() dto: CreateProspectDto) {
-        return this.prospectService.create(req.user.userId, businessId, dto);
+    @Post()
+    create(
+        @Req() req: any,
+        @Param('businessId', ParseUUIDPipe) businessId: string,
+        @Body() dto: CreateProspectDto,
+    ) {
+        const userId = req.user.userId;
+
+        return this.prospectService.create(userId, businessId, dto);
     }
 
-    @Get('business/:businessId')
-    findAllForBusiness(@Request() req, @Param('businessId') businessId: string) {
-        return this.prospectService.findAllForBusiness(req.user.userId, businessId);
+    @Get()
+    list(
+        @Req() req: any,
+        @Param('businessId', ParseUUIDPipe) businessId: string,
+        @Query() query: ListProspectsDto,
+    ) {
+        const userId = req.user.userId;
+
+        return this.prospectService.list(
+            userId,
+            businessId,
+            query.page,
+            query.limit,
+            query.search,
+            query.status,
+            query.sortBy,
+            query.order,
+        );
+    }
+
+    @Get('stats')
+    stats(
+        @Req() req: any,
+        @Param('businessId', ParseUUIDPipe) businessId: string,
+    ) {
+        return this.prospectService.stats(
+            req.user.userId,
+            businessId,
+        );
     }
 
     @Get(':id')
-    findOne(@Request() req, @Param('id') id: string) {
-        return this.prospectService.findOne(req.user.userId, id);
+    get(
+        @Req() req: any,
+        @Param('businessId', ParseUUIDPipe) businessId: string,
+        @Param('id', ParseUUIDPipe) id: string,
+    ) {
+        return this.prospectService.get(
+            req.user.userId,
+            businessId,
+            id,
+        );
     }
+
+    @Patch(':id')
+    update(
+        @Req() req: any,
+        @Param('businessId', ParseUUIDPipe) businessId: string,
+        @Param('id', ParseUUIDPipe) id: string,
+        @Body() dto: UpdateProspectDto,
+    ) {
+        return this.prospectService.update(
+            req.user.userId,
+            businessId,
+            id,
+            dto,
+        );
+    }
+
     @Delete(':id')
-    remove(@Request() req, @Param('id') id: string) {
-        return this.prospectService.remove(req.user.userId, id);
+    remove(
+        @Req() req: any,
+        @Param('businessId', ParseUUIDPipe) businessId: string,
+        @Param('id', ParseUUIDPipe) id: string,
+    ) {
+        return this.prospectService.remove(
+            req.user.userId,
+            businessId,
+            id,
+        );
     }
 }

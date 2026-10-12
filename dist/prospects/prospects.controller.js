@@ -16,61 +16,92 @@ exports.ProspectsController = void 0;
 const common_1 = require("@nestjs/common");
 const jwt_auth_guard_1 = require("../auth/guards/jwt-auth.guard");
 const prospects_service_1 = require("./prospects.service");
-const create_prospect_dto_1 = require("./create-prospect.dto");
+const prospects_dto_1 = require("./prospects.dto");
+const prospects_dto_2 = require("./prospects.dto");
+const prospects_dto_3 = require("./prospects.dto");
 let ProspectsController = class ProspectsController {
     constructor(prospectService) {
         this.prospectService = prospectService;
     }
     create(req, businessId, dto) {
-        return this.prospectService.create(req.user.userId, businessId, dto);
+        const userId = req.user.userId;
+        return this.prospectService.create(userId, businessId, dto);
     }
-    findAllForBusiness(req, businessId) {
-        return this.prospectService.findAllForBusiness(req.user.userId, businessId);
+    list(req, businessId, query) {
+        const userId = req.user.userId;
+        return this.prospectService.list(userId, businessId, query.page, query.limit, query.search, query.status, query.sortBy, query.order);
     }
-    findOne(req, id) {
-        return this.prospectService.findOne(req.user.userId, id);
+    stats(req, businessId) {
+        return this.prospectService.stats(req.user.userId, businessId);
     }
-    remove(req, id) {
-        return this.prospectService.remove(req.user.userId, id);
+    get(req, businessId, id) {
+        return this.prospectService.get(req.user.userId, businessId, id);
+    }
+    update(req, businessId, id, dto) {
+        return this.prospectService.update(req.user.userId, businessId, id, dto);
+    }
+    remove(req, businessId, id) {
+        return this.prospectService.remove(req.user.userId, businessId, id);
     }
 };
 exports.ProspectsController = ProspectsController;
 __decorate([
-    (0, common_1.Post)('business/:businessId'),
-    __param(0, (0, common_1.Request)()),
-    __param(1, (0, common_1.Param)('businessId')),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Param)('businessId', common_1.ParseUUIDPipe)),
     __param(2, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, String, create_prospect_dto_1.CreateProspectDto]),
+    __metadata("design:paramtypes", [Object, String, prospects_dto_1.CreateProspectDto]),
     __metadata("design:returntype", void 0)
 ], ProspectsController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)('business/:businessId'),
-    __param(0, (0, common_1.Request)()),
-    __param(1, (0, common_1.Param)('businessId')),
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Param)('businessId', common_1.ParseUUIDPipe)),
+    __param(2, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, prospects_dto_3.ListProspectsDto]),
+    __metadata("design:returntype", void 0)
+], ProspectsController.prototype, "list", null);
+__decorate([
+    (0, common_1.Get)('stats'),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Param)('businessId', common_1.ParseUUIDPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, String]),
     __metadata("design:returntype", void 0)
-], ProspectsController.prototype, "findAllForBusiness", null);
+], ProspectsController.prototype, "stats", null);
 __decorate([
     (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Request)()),
-    __param(1, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Param)('businessId', common_1.ParseUUIDPipe)),
+    __param(2, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:paramtypes", [Object, String, String]),
     __metadata("design:returntype", void 0)
-], ProspectsController.prototype, "findOne", null);
+], ProspectsController.prototype, "get", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Param)('businessId', common_1.ParseUUIDPipe)),
+    __param(2, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(3, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, String, prospects_dto_2.UpdateProspectDto]),
+    __metadata("design:returntype", void 0)
+], ProspectsController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Request)()),
-    __param(1, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Param)('businessId', common_1.ParseUUIDPipe)),
+    __param(2, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:paramtypes", [Object, String, String]),
     __metadata("design:returntype", void 0)
 ], ProspectsController.prototype, "remove", null);
 exports.ProspectsController = ProspectsController = __decorate([
+    (0, common_1.Controller)('businesses/:businessId/prospects'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    (0, common_1.Controller)('prospects'),
     __metadata("design:paramtypes", [prospects_service_1.ProspectsService])
 ], ProspectsController);
 //# sourceMappingURL=prospects.controller.js.map

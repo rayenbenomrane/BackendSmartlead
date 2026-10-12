@@ -1,0 +1,100 @@
+import { LeadStatus } from '@prisma/client';
+import { AuthUser } from '../common/current-user.decorator';
+import { CreateLeadDto, UpdateLeadDto } from './dto/lead.dto';
+import { LeadsService } from './leads.service';
+export declare class LeadsController {
+    private leads;
+    constructor(leads: LeadsService);
+    findAll(user: AuthUser, q?: string, status?: LeadStatus): import(".prisma/client").Prisma.PrismaPromise<{
+        id: string;
+        email: string;
+        status: import(".prisma/client").$Enums.LeadStatus;
+        createdAt: Date;
+        updatedAt: Date;
+        phone: string | null;
+        contactName: string;
+        companyName: string;
+        estimatedBudget: number | null;
+        source: string | null;
+        sector: string | null;
+        score: number | null;
+        aiScoreDetails: import("@prisma/client/runtime/library").JsonValue | null;
+        aiAnalysis: import("@prisma/client/runtime/library").JsonValue | null;
+        aiSummary: import("@prisma/client/runtime/library").JsonValue | null;
+        aiActions: import("@prisma/client/runtime/library").JsonValue | null;
+        aiUpdatedAt: Date | null;
+        ownerId: string;
+    }[]>;
+    findOne(user: AuthUser, id: string): Promise<{
+        interactions: {
+            id: string;
+            createdAt: Date;
+            description: string;
+            date: Date;
+            type: import(".prisma/client").$Enums.InteractionType;
+            leadId: string;
+        }[];
+    } & {
+        id: string;
+        email: string;
+        status: import(".prisma/client").$Enums.LeadStatus;
+        createdAt: Date;
+        updatedAt: Date;
+        phone: string | null;
+        contactName: string;
+        companyName: string;
+        estimatedBudget: number | null;
+        source: string | null;
+        sector: string | null;
+        score: number | null;
+        aiScoreDetails: import("@prisma/client/runtime/library").JsonValue | null;
+        aiAnalysis: import("@prisma/client/runtime/library").JsonValue | null;
+        aiSummary: import("@prisma/client/runtime/library").JsonValue | null;
+        aiActions: import("@prisma/client/runtime/library").JsonValue | null;
+        aiUpdatedAt: Date | null;
+        ownerId: string;
+    }>;
+    create(user: AuthUser, dto: CreateLeadDto): import(".prisma/client").Prisma.Prisma__LeadClient<{
+        id: string;
+        email: string;
+        status: import(".prisma/client").$Enums.LeadStatus;
+        createdAt: Date;
+        updatedAt: Date;
+        phone: string | null;
+        contactName: string;
+        companyName: string;
+        estimatedBudget: number | null;
+        source: string | null;
+        sector: string | null;
+        score: number | null;
+        aiScoreDetails: import("@prisma/client/runtime/library").JsonValue | null;
+        aiAnalysis: import("@prisma/client/runtime/library").JsonValue | null;
+        aiSummary: import("@prisma/client/runtime/library").JsonValue | null;
+        aiActions: import("@prisma/client/runtime/library").JsonValue | null;
+        aiUpdatedAt: Date | null;
+        ownerId: string;
+    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    update(user: AuthUser, id: string, dto: UpdateLeadDto): Promise<{
+        id: string;
+        email: string;
+        status: import(".prisma/client").$Enums.LeadStatus;
+        createdAt: Date;
+        updatedAt: Date;
+        phone: string | null;
+        contactName: string;
+        companyName: string;
+        estimatedBudget: number | null;
+        source: string | null;
+        sector: string | null;
+        score: number | null;
+        aiScoreDetails: import("@prisma/client/runtime/library").JsonValue | null;
+        aiAnalysis: import("@prisma/client/runtime/library").JsonValue | null;
+        aiSummary: import("@prisma/client/runtime/library").JsonValue | null;
+        aiActions: import("@prisma/client/runtime/library").JsonValue | null;
+        aiUpdatedAt: Date | null;
+        ownerId: string;
+    }>;
+    remove(user: AuthUser, id: string): Promise<{
+        deleted: boolean;
+    }>;
+}

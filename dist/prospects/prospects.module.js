@@ -17,7 +17,8 @@ exports.ProspectsModule = ProspectsModule;
 exports.ProspectsModule = ProspectsModule = __decorate([
     (0, common_1.Module)({
         controllers: [prospects_controller_1.ProspectsController],
-        providers: [prospects_service_1.ProspectsService, prisma_service_1.PrismaService]
+        providers: [prospects_service_1.ProspectsService, prisma_service_1.PrismaService],
+        exports: [prospects_service_1.ProspectsService],
     })
 ], ProspectsModule);
 //# sourceMappingURL=prospects.module.js.map

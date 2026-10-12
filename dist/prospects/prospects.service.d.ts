@@ -1,7 +1,9 @@
-import { PrismaService } from '../prisma.service';
-import { CreateProspectDto } from './create-prospect.dto';
+import { ProspectStatus } from '@prisma/client';
+import { PrismaService } from 'src/prisma.service';
+import { CreateProspectDto } from './prospects.dto';
+import { UpdateProspectDto } from './prospects.dto';
 export declare class ProspectsService {
-    private prisma;
+    private readonly prisma;
     constructor(prisma: PrismaService);
     private assertBusinessAccess;
     create(userId: string, businessId: string, dto: CreateProspectDto): Promise<{
@@ -14,14 +16,14 @@ export declare class ProspectsService {
         phone: string | null;
         website: string | null;
         businessId: string;
-        firstName: string;
-        lastName: string;
-        company: string;
-        jobTitle: string | null;
         industry: string | null;
         source: import(".prisma/client").$Enums.ProspectSource;
         estimatedValue: number | null;
+        jobTitle: string | null;
         notes: string | null;
+        firstName: string;
+        lastName: string;
+        company: string;
     }>;
     findAllForBusiness(userId: string, businessId: string): Promise<{
         id: string;
@@ -33,14 +35,14 @@ export declare class ProspectsService {
         phone: string | null;
         website: string | null;
         businessId: string;
-        firstName: string;
-        lastName: string;
-        company: string;
-        jobTitle: string | null;
         industry: string | null;
         source: import(".prisma/client").$Enums.ProspectSource;
         estimatedValue: number | null;
+        jobTitle: string | null;
         notes: string | null;
+        firstName: string;
+        lastName: string;
+        company: string;
     }[]>;
     findOne(userId: string, id: string): Promise<{
         id: string;
@@ -52,16 +54,121 @@ export declare class ProspectsService {
         phone: string | null;
         website: string | null;
         businessId: string;
-        firstName: string;
-        lastName: string;
-        company: string;
-        jobTitle: string | null;
         industry: string | null;
         source: import(".prisma/client").$Enums.ProspectSource;
         estimatedValue: number | null;
+        jobTitle: string | null;
         notes: string | null;
+        firstName: string;
+        lastName: string;
+        company: string;
     }>;
-    remove(userId: string, id: string): Promise<{
-        deleted: boolean;
+    findOwned(userId: string, businessId: string, id: string): Promise<{
+        id: string;
+        email: string | null;
+        status: import(".prisma/client").$Enums.ProspectStatus;
+        createdAt: Date;
+        updatedAt: Date;
+        region: string | null;
+        phone: string | null;
+        website: string | null;
+        businessId: string;
+        industry: string | null;
+        source: import(".prisma/client").$Enums.ProspectSource;
+        estimatedValue: number | null;
+        jobTitle: string | null;
+        notes: string | null;
+        firstName: string;
+        lastName: string;
+        company: string;
+    }>;
+    get(userId: string, businessId: string, id: string): Promise<{
+        id: string;
+        email: string | null;
+        status: import(".prisma/client").$Enums.ProspectStatus;
+        createdAt: Date;
+        updatedAt: Date;
+        region: string | null;
+        phone: string | null;
+        website: string | null;
+        businessId: string;
+        industry: string | null;
+        source: import(".prisma/client").$Enums.ProspectSource;
+        estimatedValue: number | null;
+        jobTitle: string | null;
+        notes: string | null;
+        firstName: string;
+        lastName: string;
+        company: string;
+    }>;
+    remove(userId: string, businessId: string, id: string): Promise<{
+        id: string;
+        email: string | null;
+        status: import(".prisma/client").$Enums.ProspectStatus;
+        createdAt: Date;
+        updatedAt: Date;
+        region: string | null;
+        phone: string | null;
+        website: string | null;
+        businessId: string;
+        industry: string | null;
+        source: import(".prisma/client").$Enums.ProspectSource;
+        estimatedValue: number | null;
+        jobTitle: string | null;
+        notes: string | null;
+        firstName: string;
+        lastName: string;
+        company: string;
+    }>;
+    list(userId: string, businessId: string, page?: number, limit?: number, search?: string, status?: ProspectStatus, sortBy?: string, order?: 'asc' | 'desc' | 'ASC' | 'DESC'): Promise<{
+        data: {
+            id: string;
+            email: string | null;
+            status: import(".prisma/client").$Enums.ProspectStatus;
+            createdAt: Date;
+            updatedAt: Date;
+            region: string | null;
+            phone: string | null;
+            website: string | null;
+            businessId: string;
+            industry: string | null;
+            source: import(".prisma/client").$Enums.ProspectSource;
+            estimatedValue: number | null;
+            jobTitle: string | null;
+            notes: string | null;
+            firstName: string;
+            lastName: string;
+            company: string;
+        }[];
+        total: number;
+        page: number;
+        limit: number;
+        totalPages: number;
+    }>;
+    stats(userId: string, businessId: string): Promise<{
+        total: number;
+        byStatus: Record<string, {
+            count: number;
+            value: number;
+        }>;
+    }>;
+    update(userId: string, businessId: string, id: string, dto: UpdateProspectDto): Promise<{
+        id: string;
+        email: string | null;
+        status: import(".prisma/client").$Enums.ProspectStatus;
+        createdAt: Date;
+        updatedAt: Date;
+        region: string | null;
+        phone: string | null;
+        website: string | null;
+        businessId: string;
+        industry: string | null;
+        source: import(".prisma/client").$Enums.ProspectSource;
+        estimatedValue: number | null;
+        jobTitle: string | null;
+        notes: string | null;
+        firstName: string;
+        lastName: string;
+        company: string;
     }>;
 }
