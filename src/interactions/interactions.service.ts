@@ -25,7 +25,7 @@ export class InteractionsService {
     await this.prospects.findOwned(userId, businessId, prospectId);
 
     return this.prisma.interaction.findMany({
-      where: { leadId: prospectId },
+      where: { prospectId: prospectId },
       orderBy: [
         { date: 'desc' },
         { createdAt: 'desc' },
@@ -43,7 +43,7 @@ export class InteractionsService {
 
     return this.prisma.interaction.create({
       data: {
-        leadId: prospectId,
+        prospectId: prospectId,
         type: dto.type,
         description: dto.description,
         date: dto.date ? new Date(dto.date) : new Date(),
@@ -62,7 +62,7 @@ export class InteractionsService {
     const interaction = await this.prisma.interaction.findFirst({
       where: {
         id,
-        leadId: prospectId,
+        prospectId: prospectId,
       },
     });
 

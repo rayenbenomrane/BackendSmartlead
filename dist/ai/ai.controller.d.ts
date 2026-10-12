@@ -4,15 +4,6 @@ export declare class AiController {
     private ai;
     constructor(ai: AiService);
     analyze(u: AuthUser, id: string): Promise<{
-        interactions: {
-            id: string;
-            createdAt: Date;
-            description: string;
-            date: Date;
-            type: import(".prisma/client").$Enums.InteractionType;
-            leadId: string;
-        }[];
-    } & {
         id: string;
         email: string;
         status: import(".prisma/client").$Enums.LeadStatus;
@@ -21,8 +12,8 @@ export declare class AiController {
         phone: string | null;
         contactName: string;
         companyName: string;
-        estimatedBudget: number | null;
         source: string | null;
+        estimatedBudget: number | null;
         sector: string | null;
         score: number | null;
         aiScoreDetails: import("@prisma/client/runtime/library").JsonValue | null;
@@ -33,15 +24,6 @@ export declare class AiController {
         ownerId: string;
     }>;
     summarize(u: AuthUser, id: string): Promise<{
-        interactions: {
-            id: string;
-            createdAt: Date;
-            description: string;
-            date: Date;
-            type: import(".prisma/client").$Enums.InteractionType;
-            leadId: string;
-        }[];
-    } & {
         id: string;
         email: string;
         status: import(".prisma/client").$Enums.LeadStatus;
@@ -50,8 +32,8 @@ export declare class AiController {
         phone: string | null;
         contactName: string;
         companyName: string;
-        estimatedBudget: number | null;
         source: string | null;
+        estimatedBudget: number | null;
         sector: string | null;
         score: number | null;
         aiScoreDetails: import("@prisma/client/runtime/library").JsonValue | null;
@@ -62,15 +44,6 @@ export declare class AiController {
         ownerId: string;
     }>;
     score(u: AuthUser, id: string): Promise<{
-        interactions: {
-            id: string;
-            createdAt: Date;
-            description: string;
-            date: Date;
-            type: import(".prisma/client").$Enums.InteractionType;
-            leadId: string;
-        }[];
-    } & {
         id: string;
         email: string;
         status: import(".prisma/client").$Enums.LeadStatus;
@@ -79,8 +52,8 @@ export declare class AiController {
         phone: string | null;
         contactName: string;
         companyName: string;
-        estimatedBudget: number | null;
         source: string | null;
+        estimatedBudget: number | null;
         sector: string | null;
         score: number | null;
         aiScoreDetails: import("@prisma/client/runtime/library").JsonValue | null;
@@ -91,15 +64,6 @@ export declare class AiController {
         ownerId: string;
     }>;
     recommend(u: AuthUser, id: string): Promise<{
-        interactions: {
-            id: string;
-            createdAt: Date;
-            description: string;
-            date: Date;
-            type: import(".prisma/client").$Enums.InteractionType;
-            leadId: string;
-        }[];
-    } & {
         id: string;
         email: string;
         status: import(".prisma/client").$Enums.LeadStatus;
@@ -108,8 +72,8 @@ export declare class AiController {
         phone: string | null;
         contactName: string;
         companyName: string;
-        estimatedBudget: number | null;
         source: string | null;
+        estimatedBudget: number | null;
         sector: string | null;
         score: number | null;
         aiScoreDetails: import("@prisma/client/runtime/library").JsonValue | null;
@@ -120,15 +84,6 @@ export declare class AiController {
         ownerId: string;
     }>;
     refresh(u: AuthUser, id: string): Promise<{
-        interactions: {
-            id: string;
-            createdAt: Date;
-            description: string;
-            date: Date;
-            type: import(".prisma/client").$Enums.InteractionType;
-            leadId: string;
-        }[];
-    } & {
         id: string;
         email: string;
         status: import(".prisma/client").$Enums.LeadStatus;
@@ -137,8 +92,8 @@ export declare class AiController {
         phone: string | null;
         contactName: string;
         companyName: string;
-        estimatedBudget: number | null;
         source: string | null;
+        estimatedBudget: number | null;
         sector: string | null;
         score: number | null;
         aiScoreDetails: import("@prisma/client/runtime/library").JsonValue | null;

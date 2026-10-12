@@ -102,7 +102,7 @@ model Prospect {
   notes          String?
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
-
+  interactions Interaction[]
   businessId String
   business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
 
@@ -144,7 +144,7 @@ model Lead {
 
   ownerId      String
   owner        User          @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-  interactions Interaction[]
+
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -158,9 +158,9 @@ model Interaction {
   date        DateTime        @default(now())
   type        InteractionType
   description String
-  leadId      String
-  lead        Lead            @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  prospectId  String
+  prospect    Prospect        @relation(fields: [prospectId], references: [id], onDelete: Cascade)
   createdAt   DateTime        @default(now())
 
-  @@index([leadId])
+  @@index([prospectId])
 }

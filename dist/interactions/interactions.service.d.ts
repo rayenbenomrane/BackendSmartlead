@@ -7,36 +7,36 @@ export declare class InteractionsService {
     constructor(prisma: PrismaService, prospects: ProspectsService);
     list(userId: string, businessId: string, prospectId: string): Promise<{
         id: string;
-        date: Date;
-        type: import(".prisma/client").$Enums.InteractionType;
-        description: string;
-        leadId: string;
         createdAt: Date;
+        description: string;
+        type: import(".prisma/client").$Enums.InteractionType;
+        date: Date;
+        prospectId: string;
     }[]>;
     create(userId: string, businessId: string, prospectId: string, dto: CreateInteractionDto): Promise<{
         id: string;
-        date: Date;
-        type: import(".prisma/client").$Enums.InteractionType;
-        description: string;
-        leadId: string;
         createdAt: Date;
+        description: string;
+        type: import(".prisma/client").$Enums.InteractionType;
+        date: Date;
+        prospectId: string;
     }>;
     private find;
     get(userId: string, businessId: string, prospectId: string, id: string): Promise<{
         id: string;
-        date: Date;
-        type: import(".prisma/client").$Enums.InteractionType;
-        description: string;
-        leadId: string;
         createdAt: Date;
+        description: string;
+        type: import(".prisma/client").$Enums.InteractionType;
+        date: Date;
+        prospectId: string;
     }>;
     update(userId: string, businessId: string, prospectId: string, id: string, dto: UpdateInteractionDto): Promise<{
         id: string;
-        date: Date;
-        type: import(".prisma/client").$Enums.InteractionType;
-        description: string;
-        leadId: string;
         createdAt: Date;
+        description: string;
+        type: import(".prisma/client").$Enums.InteractionType;
+        date: Date;
+        prospectId: string;
     }>;
     remove(userId: string, businessId: string, prospectId: string, id: string): Promise<{
         ok: boolean;
