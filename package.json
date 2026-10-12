@@ -1,3 +1,4 @@
+
 {
   "name": "smart-lead-backend",
   "version": "0.1.0",
@@ -6,7 +7,11 @@
     "build": "nest build",
     "start": "node dist/main",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev"
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:seed": "prisma db seed"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.133.0",
@@ -30,6 +35,7 @@
     "@types/node": "^20.0.0",
     "@types/passport-jwt": "^4.0.1",
     "prisma": "^5.19.0",
+    "tsx": "^4.23.15",
     "typescript": "^5.4.0"
   }
 }
