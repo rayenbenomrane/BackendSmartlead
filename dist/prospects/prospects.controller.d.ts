@@ -23,6 +23,12 @@ export declare class ProspectsController {
         firstName: string;
         lastName: string;
         company: string;
+        score: number | null;
+        aiScoreDetails: import("@prisma/client/runtime/library").JsonValue | null;
+        aiAnalysis: import("@prisma/client/runtime/library").JsonValue | null;
+        aiSummary: import("@prisma/client/runtime/library").JsonValue | null;
+        aiActions: import("@prisma/client/runtime/library").JsonValue | null;
+        aiUpdatedAt: Date | null;
     }>;
     list(req: any, businessId: string, query: ListProspectsDto): Promise<{
         data: {
@@ -43,6 +49,12 @@ export declare class ProspectsController {
             firstName: string;
             lastName: string;
             company: string;
+            score: number | null;
+            aiScoreDetails: import("@prisma/client/runtime/library").JsonValue | null;
+            aiAnalysis: import("@prisma/client/runtime/library").JsonValue | null;
+            aiSummary: import("@prisma/client/runtime/library").JsonValue | null;
+            aiActions: import("@prisma/client/runtime/library").JsonValue | null;
+            aiUpdatedAt: Date | null;
         }[];
         total: number;
         page: number;
@@ -74,6 +86,12 @@ export declare class ProspectsController {
         firstName: string;
         lastName: string;
         company: string;
+        score: number | null;
+        aiScoreDetails: import("@prisma/client/runtime/library").JsonValue | null;
+        aiAnalysis: import("@prisma/client/runtime/library").JsonValue | null;
+        aiSummary: import("@prisma/client/runtime/library").JsonValue | null;
+        aiActions: import("@prisma/client/runtime/library").JsonValue | null;
+        aiUpdatedAt: Date | null;
     }>;
     update(req: any, businessId: string, id: string, dto: UpdateProspectDto): Promise<{
         id: string;
@@ -93,6 +111,12 @@ export declare class ProspectsController {
         firstName: string;
         lastName: string;
         company: string;
+        score: number | null;
+        aiScoreDetails: import("@prisma/client/runtime/library").JsonValue | null;
+        aiAnalysis: import("@prisma/client/runtime/library").JsonValue | null;
+        aiSummary: import("@prisma/client/runtime/library").JsonValue | null;
+        aiActions: import("@prisma/client/runtime/library").JsonValue | null;
+        aiUpdatedAt: Date | null;
     }>;
     remove(req: any, businessId: string, id: string): Promise<{
         id: string;
@@ -112,5 +136,11 @@ export declare class ProspectsController {
         firstName: string;
         lastName: string;
         company: string;
+        score: number | null;
+        aiScoreDetails: import("@prisma/client/runtime/library").JsonValue | null;
+        aiAnalysis: import("@prisma/client/runtime/library").JsonValue | null;
+        aiSummary: import("@prisma/client/runtime/library").JsonValue | null;
+        aiActions: import("@prisma/client/runtime/library").JsonValue | null;
+        aiUpdatedAt: Date | null;
     }>;
 }

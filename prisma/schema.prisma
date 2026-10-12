@@ -16,6 +16,7 @@ enum ProspectStatus {
   CONTACTED
   QUALIFIED
   NEGOTIATION
+  PROPOSAL_SENT
   WON
   LOST
 }
@@ -48,7 +49,7 @@ model User {
   updatedAt DateTime   @updatedAt
   businesses BusinessMember[]
   
-  leads     Lead[]
+ 
 }
 model Business {
   id          String   @id @default(uuid())
@@ -105,17 +106,16 @@ model Prospect {
   interactions Interaction[]
   businessId String
   business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
-
+  score          Int?
+  aiScoreDetails Json?
+  aiAnalysis     Json?
+  aiSummary      Json?
+  aiActions      Json?
+  aiUpdatedAt    DateTime?
   @@index([businessId])
+  @@index([score])
 }
-enum LeadStatus {
-  NOUVEAU
-  CONTACTE
-  EN_NEGOCIATION
-  PROPOSITION_ENVOYEE
-  GAGNE
-  PERDU
-}
+
 
 enum InteractionType {
   EMAIL
@@ -123,35 +123,6 @@ enum InteractionType {
   NOTE
 }
 
-model Lead {
-  id              String       @id @default(cuid())
-  contactName     String
-  companyName     String
-  email           String
-  phone           String?
-  sector          String?
-  source          String?
-  estimatedBudget Float?
-  status          LeadStatus   @default(NOUVEAU)
-
-  // AI results (Module 4)
-  score          Int?
-  aiScoreDetails Json?
-  aiAnalysis     Json?
-  aiSummary      Json?
-  aiActions      Json?
-  aiUpdatedAt    DateTime?
-
-  ownerId      String
-  owner        User          @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([ownerId])
-  @@index([status])
-}
 
 model Interaction {
   id          String          @id @default(cuid())

@@ -1,4 +1,4 @@
-import { ProspectStatus } from '@prisma/client';
+import { Prisma, ProspectStatus } from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
 import { CreateProspectDto } from './prospects.dto';
 import { UpdateProspectDto } from './prospects.dto';
@@ -24,6 +24,12 @@ export declare class ProspectsService {
         firstName: string;
         lastName: string;
         company: string;
+        score: number | null;
+        aiScoreDetails: Prisma.JsonValue | null;
+        aiAnalysis: Prisma.JsonValue | null;
+        aiSummary: Prisma.JsonValue | null;
+        aiActions: Prisma.JsonValue | null;
+        aiUpdatedAt: Date | null;
     }>;
     findAllForBusiness(userId: string, businessId: string): Promise<{
         id: string;
@@ -43,6 +49,12 @@ export declare class ProspectsService {
         firstName: string;
         lastName: string;
         company: string;
+        score: number | null;
+        aiScoreDetails: Prisma.JsonValue | null;
+        aiAnalysis: Prisma.JsonValue | null;
+        aiSummary: Prisma.JsonValue | null;
+        aiActions: Prisma.JsonValue | null;
+        aiUpdatedAt: Date | null;
     }[]>;
     findOne(userId: string, id: string): Promise<{
         id: string;
@@ -62,6 +74,12 @@ export declare class ProspectsService {
         firstName: string;
         lastName: string;
         company: string;
+        score: number | null;
+        aiScoreDetails: Prisma.JsonValue | null;
+        aiAnalysis: Prisma.JsonValue | null;
+        aiSummary: Prisma.JsonValue | null;
+        aiActions: Prisma.JsonValue | null;
+        aiUpdatedAt: Date | null;
     }>;
     findOwned(userId: string, businessId: string, id: string): Promise<{
         id: string;
@@ -81,6 +99,12 @@ export declare class ProspectsService {
         firstName: string;
         lastName: string;
         company: string;
+        score: number | null;
+        aiScoreDetails: Prisma.JsonValue | null;
+        aiAnalysis: Prisma.JsonValue | null;
+        aiSummary: Prisma.JsonValue | null;
+        aiActions: Prisma.JsonValue | null;
+        aiUpdatedAt: Date | null;
     }>;
     get(userId: string, businessId: string, id: string): Promise<{
         id: string;
@@ -100,6 +124,12 @@ export declare class ProspectsService {
         firstName: string;
         lastName: string;
         company: string;
+        score: number | null;
+        aiScoreDetails: Prisma.JsonValue | null;
+        aiAnalysis: Prisma.JsonValue | null;
+        aiSummary: Prisma.JsonValue | null;
+        aiActions: Prisma.JsonValue | null;
+        aiUpdatedAt: Date | null;
     }>;
     remove(userId: string, businessId: string, id: string): Promise<{
         id: string;
@@ -119,6 +149,12 @@ export declare class ProspectsService {
         firstName: string;
         lastName: string;
         company: string;
+        score: number | null;
+        aiScoreDetails: Prisma.JsonValue | null;
+        aiAnalysis: Prisma.JsonValue | null;
+        aiSummary: Prisma.JsonValue | null;
+        aiActions: Prisma.JsonValue | null;
+        aiUpdatedAt: Date | null;
     }>;
     list(userId: string, businessId: string, page?: number, limit?: number, search?: string, status?: ProspectStatus, sortBy?: string, order?: 'asc' | 'desc' | 'ASC' | 'DESC'): Promise<{
         data: {
@@ -139,6 +175,12 @@ export declare class ProspectsService {
             firstName: string;
             lastName: string;
             company: string;
+            score: number | null;
+            aiScoreDetails: Prisma.JsonValue | null;
+            aiAnalysis: Prisma.JsonValue | null;
+            aiSummary: Prisma.JsonValue | null;
+            aiActions: Prisma.JsonValue | null;
+            aiUpdatedAt: Date | null;
         }[];
         total: number;
         page: number;
@@ -170,5 +212,11 @@ export declare class ProspectsService {
         firstName: string;
         lastName: string;
         company: string;
+        score: number | null;
+        aiScoreDetails: Prisma.JsonValue | null;
+        aiAnalysis: Prisma.JsonValue | null;
+        aiSummary: Prisma.JsonValue | null;
+        aiActions: Prisma.JsonValue | null;
+        aiUpdatedAt: Date | null;
     }>;
 }

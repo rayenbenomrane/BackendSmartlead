@@ -8,18 +8,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AiModule = void 0;
 const common_1 = require("@nestjs/common");
-const leads_module_1 = require("../leads/leads.module");
 const ai_controller_1 = require("./ai.controller");
 const ai_service_1 = require("./ai.service");
+const llm_service_1 = require("./llm.service");
 const prisma_service_1 = require("../prisma.service");
 let AiModule = class AiModule {
 };
 exports.AiModule = AiModule;
 exports.AiModule = AiModule = __decorate([
     (0, common_1.Module)({
-        imports: [leads_module_1.LeadsModule],
         controllers: [ai_controller_1.AiController],
-        providers: [ai_service_1.AiService, prisma_service_1.PrismaService],
+        providers: [ai_service_1.AiService, llm_service_1.LlmService, prisma_service_1.PrismaService],
+        exports: [ai_service_1.AiService]
     })
 ], AiModule);
 //# sourceMappingURL=ai.module.js.map

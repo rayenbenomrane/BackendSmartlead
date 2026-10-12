@@ -13,12 +13,15 @@ const users_module_1 = require("./users/users.module");
 const businesses_module_1 = require("./businesses/businesses.module");
 const prospects_module_1 = require("./prospects/prospects.module");
 const interactions_module_1 = require("./interactions/interactions.module");
+const ai_module_1 = require("./ai/ai.module");
+const dashboard_module_1 = require("./dashboard/dashboard.module");
+const profile_module_1 = require("./profile/profile.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [auth_module_1.AuthModule, users_module_1.UsersModule, businesses_module_1.BusinessModule, prospects_module_1.ProspectsModule, interactions_module_1.InteractionsModule],
+        imports: [auth_module_1.AuthModule, users_module_1.UsersModule, businesses_module_1.BusinessModule, prospects_module_1.ProspectsModule, interactions_module_1.InteractionsModule, ai_module_1.AiModule, dashboard_module_1.DashboardModule, profile_module_1.ProfileModule],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
